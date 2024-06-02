@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="device-width, initial-scale=1.0">
+    <title>Демонстрация</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1><a href="#!">Перейти в социальную сеть</a></h1>
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img src="img/img1.png" style="width:100%">
+            <div class="text">Добро пожаловать в социальную сеть OpenNET!</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="img/img2.png" style="width:100%">
+            <div class="text">Общайтесь с пользователями со всего мира!</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="img/img3.png" style="width:100%">
+            <div class="text">Просматривайте актуальные новости!</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="img/img4.png" style="width:100%">
+            <div class="text">Смотрите и публикуйте собственные видео.</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="img/img5.png" style="width:100%">
+            <div class="text">Соревнуйтесь с друзьями в классических видеоиграх!</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="img/img6.png" style="width:100%">
+            <div class="text">Слушайте и публикуйте собственную музыку.</div>
+        </div>
+
+        <!-- Кнопки для перехода между слайдами -->
+
+        <a class="prev" onclick="plusSlides(-1); showSlides()">&#10094;</a>
+        <a class="next" onclick="plusSlides(1); showSlides()">&#10095;</a>
+    </div>
+
+    <!-- Алгоритм демонстрации слайдов -->
+
+    <script>
+
+        // Переменная для хранения текущего индекса слайда
+
+        var slideIndex = 0;
+        var slideTimer;
+
+        // Функция для отображения слайдов
+
+        function showSlides() {
+
+            var i;
+
+            // Получаем элемент mySlides
+
+            var slides = document.getElementsByClassName("mySlides");
+
+            // Условие для перехода с последней картинки на первую
+            // Если передаваемый параметр больше длины массива, то в переменную указываем номер
+            // первой картинки
+
+            if (slideIndex >= slides.length) { slideIndex = 0 }
+
+            // Условие для перехода с первой картинки на последнюю
+            // Если передаваемый параметр меньше 1, то в переменную помещаем значение длины
+            // массива. Это значение соответствует последнему номеру картинки    
+
+            if (slideIndex < 0) { slideIndex = slides.length - 1 }
+
+            // Цикл, с помощью которого проходимся по всем картинкам
+
+            for (i = 0; i < slides.length; i++) {
+                // Отключаем отображение, всем картинкам
+                slides[i].style.display = "none";
+            }
+
+            slides[slideIndex].style.display = "block";  // Отображение текущего слайда
+
+            // Установка таймера для автоматического переключения слайдов каждые 10 секунд
+
+            slideTimer = setTimeout(function () {
+                plusSlides(1); // Переход к следующему слайду
+                showSlides();
+            }, 10000);
+
+        }
+
+        // Вызов функции showSlides() для отображения первого слайда
+
+        showSlides();
+
+        // Функция для переключения слайдов вперёд/назад
+
+        function plusSlides(n) {
+            clearTimeout(slideTimer); // Остановка таймера
+            slideIndex += n;
+        }
+
+    </script>
+</body>
+
+</html>
